@@ -107,6 +107,10 @@ call plug#begin()
   Plug 'mileszs/ack.vim'
   Plug 'ryanoasis/vim-devicons'
   Plug 'whatyouhide/vim-gotham'
+  Plug 'godlygeek/tabular'
+  Plug 'preservim/vim-markdown'
+  Plug 'iamcco/mathjax-support-for-mkdp'
+  Plug 'iamcco/markdown-preview.vim'
   " Use release branch (recommended)
   "vim浮动窗
   Plug 'voldikss/vim-floaterm'
@@ -136,6 +140,7 @@ let g:ctrlp_cmd = 'CtrlP'
 
 "========ack.vim
 let g:ackprg = 'ag --nogroup --nocolor --column'
+
 " =====easymotion 
 " <Leader>f{char} to move to {char}
 map  <leader>f <Plug>(easymotion-bd-f)
@@ -163,12 +168,15 @@ let g:floaterm_keymap_kill = '<Leader>px'    "关掉终端。
 let g:floaterm_wintype = 'float'             "浮动窗口类型。
 let g:floaterm_position = 'center'           "在窗口中间显示。
 
+"============vim.markdown==
+"禁用折叠
+let g:vim_markdown_folding_disabled = 1
+
 "===============coc.nvim================
 let g:coc_global_extensions = [
             \'coc-json',
             \'coc-vimlsp',
             \'coc-tsserver',
-            \'coc-clangd',
             \'coc-snippets',
             \'coc-pairs',
             \'coc-cmake',
