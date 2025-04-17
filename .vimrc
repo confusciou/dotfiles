@@ -122,16 +122,16 @@ call plug#end()
 
 
 
-
 "====nerdtree设置
+"<leader>t
 "停留在上次光标停留位置
-nnoremap <leader>y :NERDTreeFocus<CR>
+nnoremap <leader>tu :NERDTreeFocus<CR>
 "停留在根目录并折叠目录
-nnoremap <leader>g :NERDTree<CR> 
+nnoremap <leader>tr :NERDTree<CR> 
 "打开关闭tree
-nnoremap <leader>t :NERDTreeToggle<CR>
+nnoremap <leader>tx :NERDTreeToggle<CR>
 "停留在当前文件位置
-nnoremap <leader>h :NERDTreeFind<CR>
+nnoremap <leader>tt :NERDTreeFind<CR>
 "在nerdtree，m ->打开目录操作界面
 
 "==========ctrlp
