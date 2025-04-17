@@ -330,7 +330,7 @@ xmap <leader>x  <Plug>(coc-convert-snippet)
 "==================others=================
 
 "颜色主题
-colorscheme gotham
+colorscheme gotham256
 hi CocMenuSel ctermbg=237 guibg=#13354A
 "coc自带的覆盖掉enter，在此处改回
 inoremap <Enter> <CR>
