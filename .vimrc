@@ -97,6 +97,7 @@ nnoremap L $
 autocmd BufWritePost $MYVIMRC source $MYVIMRC
 let mapleader = " "
 
+set hlsearch
 
 "=====================vim-plug=====================
 ""vim-plug 默认"
@@ -203,6 +204,8 @@ let g:coc_global_extensions = [
             "CocList marketplace
             "CocList marketplace python
             "查找coc的子插件
+
+
 set encoding=utf-8
 set signcolumn=yes
 "tab补全及相关配置
