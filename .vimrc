@@ -64,11 +64,16 @@ set mouse+=a
  "set tab's size
 set nobackup
  "
- set autoindent
+set autoindent
  "
- set ruler
+"支持256
+if !has('gui_running')
+set t_Co=256
+endif
+
+set ruler
 "hight the cursor's locatio
- set cursorline
+set cursorline
 "hightlight cursorline
 "set paste
 "make copy in insert don't add tab
@@ -91,6 +96,7 @@ nnoremap H ^
 nnoremap L $
 autocmd BufWritePost $MYVIMRC source $MYVIMRC
 let mapleader = " "
+
 
 "=====================vim-plug=====================
 ""vim-plug 默认"
@@ -118,6 +124,8 @@ call plug#begin()
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Or build from source code by using npm
   Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'npm ci'}
+  Plug 'vim-airline/vim-airline'
+  Plug 'vim-airline/vim-airline-themes'
 call plug#end()
 
 
@@ -171,6 +179,14 @@ let g:floaterm_position = 'center'           "在窗口中间显示。
 "============vim.markdown==
 "禁用折叠
 let g:vim_markdown_folding_disabled = 1
+
+"===========vim.airline===
+"tableline
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#buffer_nr_show = 1
+
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
 
 "===============coc.nvim================
 let g:coc_global_extensions = [
@@ -330,7 +346,7 @@ xmap <leader>x  <Plug>(coc-convert-snippet)
 "==================others=================
 
 "颜色主题
-colorscheme gotham256
+colorscheme gotham
 hi CocMenuSel ctermbg=237 guibg=#13354A
 "coc自带的覆盖掉enter，在此处改回
 inoremap <Enter> <CR>
