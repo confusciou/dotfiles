@@ -98,6 +98,8 @@ autocmd BufWritePost $MYVIMRC source $MYVIMRC
 let mapleader = " "
 
 set hlsearch
+nnoremap <leader>[ :nohlsearch<Enter> 
+
 
 "=====================vim-plug=====================
 ""vim-plug 默认"
@@ -177,6 +179,7 @@ let g:floaterm_keymap_kill = '<Leader>px'    "关掉终端。
 let g:floaterm_wintype = 'float'             "浮动窗口类型。
 let g:floaterm_position = 'center'           "在窗口中间显示。
 
+command! FZF FloatermNew fzf
 "============vim.markdown==
 "禁用折叠
 let g:vim_markdown_folding_disabled = 1
@@ -188,6 +191,9 @@ let g:airline#extensions#tabline#buffer_nr_show = 1
 
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
+"缓冲区跳转
+nnoremap <leader><tab> :bn<CR>
+nnoremap <C-s-tab> :bp<CR>
 
 "===============coc.nvim================
 let g:coc_global_extensions = [
@@ -197,7 +203,9 @@ let g:coc_global_extensions = [
             \'coc-snippets',
             \'coc-pairs',
             \'coc-cmake',
+            \'coc-pyright',
             \'coc-git',
+            \'coc-floaterm',
             \'coc-marketplace']
 
 
@@ -236,6 +244,13 @@ nmap <silent><nowait> gi <Plug>(coc-implementation)
 nmap <silent><nowait> gr <Plug>(coc-references)
 "显示文档
 nnoremap <silent> <leader>i :call ShowDocumentation()<CR>
+function! ShowDocumentation()
+  if CocAction('hasProvider', 'hover')
+    call CocActionAsync('doHover')
+  else
+    call feedkeys('K','in')
+  endif
+endfunction
 "光标关键词高亮
 autocmd CursorHold * silent call CocActionAsync('highlight')
 "全局重命名变量
@@ -246,10 +261,11 @@ set pumheight=10
 "选定区域代码格式化
 xmap <leader>=  <Plug>(coc-format-selected)
 nmap <leader>=  <Plug>(coc-format-selected)
+
 augroup mygroup
-  autocmd!
-  " Setup formatexpr specified filetype(s)
-  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+autocmd!
+" Setup formatexpr specified filetype(s)
+autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
 augroup end
 
 
