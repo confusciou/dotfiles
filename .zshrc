@@ -114,7 +114,6 @@ source ~/powerlevel10k/powerlevel10k.zsh-theme
 plugins=(zsh-syntax-highlighting)
 source /home/confuscia/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # Set up fzf key bindings and fuzzy completion
-source <(fzf --zsh)
 plugins=( 
     # other plugins...
     #zsh命令提示
@@ -123,9 +122,11 @@ plugins=(
 )
 source /home/confuscia/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-bindkey - v
-
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+alias to15445="cd vsc++gogo/cs15445/project0/my-15445-learning-code"
+
+source <(fzf --zsh)
 

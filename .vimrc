@@ -72,9 +72,9 @@ set t_Co=256
 endif
 
 set ruler
-"hight the cursor's locatio
+"行下划线
 set cursorline
-"hightlight cursorline
+"
 "set paste
 "make copy in insert don't add tab
 filetype indent on
@@ -111,6 +111,7 @@ if empty(glob(data_dir . '/autoload/plug.vim'))
 endif
 
 call plug#begin()
+  Plug 'cdelledonne/vim-cmake'
   Plug 'preservim/nerdtree'
   Plug 'easymotion/vim-easymotion'
   Plug 'mileszs/ack.vim'
@@ -118,7 +119,9 @@ call plug#begin()
   Plug 'whatyouhide/vim-gotham'
   Plug 'godlygeek/tabular'
   Plug 'preservim/vim-markdown'
+  Plug 'luochen1990/rainbow'
   Plug 'iamcco/mathjax-support-for-mkdp'
+  Plug 'octol/vim-cpp-enhanced-highlight'
   Plug 'iamcco/markdown-preview.vim'
   " Use release branch (recommended)
   "vim浮动窗
@@ -132,7 +135,9 @@ call plug#begin()
 call plug#end()
 
 
-
+"===============================cmake===
+"待施工
+"
 "====nerdtree设置
 "<leader>t
 "停留在上次光标停留位置
@@ -167,6 +172,20 @@ nmap <leader>L <Plug>(easymotion-overwin-line)
 " Move to word
 map  <leader>w <Plug>(easymotion-bd-w)
 nmap <leader>w <Plug>(easymotion-overwin-w)
+
+"=============vim-cpp-enhanced
+let g:cpp_class_scope_highlight = 1
+let g:cpp_member_variable_highlight = 1
+let g:cpp_class_decl_highlight = 1
+let g:cpp_posix_standard = 1
+let g:cpp_experimental_template_highlight = 1
+let g:cpp_concepts_highlight = 1
+let g:cpp_no_function_highlight = 1
+"Vim tend to a have issues with flagging braces as errors, see for example vim-jp/vim-cpp#16. A workaround is to set
+"let c_no_curly_error=1
+
+"============rainbow'
+let g:rainbow_active = 1
 
 "=======vim-float 
 "voldikss/vim-floaterm
@@ -205,6 +224,7 @@ let g:coc_global_extensions = [
             \'coc-cmake',
             \'coc-pyright',
             \'coc-git',
+            \'coc-highlight',
             \'coc-floaterm',
             \'coc-marketplace']
 
@@ -317,9 +337,6 @@ command! -nargs=0 Format :call CocActionAsync('format')
 " Add `:Fold` command to fold current buffer
 command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 
-" Add `:OR` command for organize imports of the current buffer
-command! -nargs=0 OR   :call     CocActionAsync('runCommand', 'editor.action.organizeImport')
-
 " Add (Neo)Vim's native statusline support
 " NOTE: Please see `:h coc-status` for integrations with external plugins that
 " provide custom statusline: lightline.vim, vim-airline
@@ -343,7 +360,10 @@ nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
-" coc-snippets
+"-------coc-highlight
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+"-------coc-snippets
 " 还没细看
 " Use <C-l> for trigger snippet expand.
 imap <C-l> <Plug>(coc-snippets-expand)
